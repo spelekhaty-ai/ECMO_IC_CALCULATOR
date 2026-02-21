@@ -43,7 +43,6 @@ with col2:
         with sub_col1:
             blood_flow = st.number_input("ECMO blood flow (L/min)", value=0.0)
             sweep_flow = st.number_input("ECMO sweep gas flow (L/min)", value=0.0)
-            fe_co2 = st.number_input("ECMO FeCO2 (%)", value=0.0)
             hb = st.number_input("Hemoglobin (g/dL)", value=0.0)
             hco3 = st.number_input("HCO3-", value=0.0)
         with sub_col2:
