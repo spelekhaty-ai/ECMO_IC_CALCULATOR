@@ -118,8 +118,9 @@ contact_email = "spelekhaty.lit@gmail.com"
 subject = "Feedback on ECMO Metabolic Calculator"
 body = "Hi, I have a question/feedback regarding the calculator..."
 mail_link = f"mailto:{contact_email}?subject={subject}&body={body}"
+st.link_button("📧 Provide Feedback", mail_link)
 
-st.markdown("---")
-st.markdown("![Usage](https://img.shields.io/badge/dynamic/json?label=Global%20Tool%20Uses&query=value&url=https%3A%2F%2Fapi.countapi.xyz%2Fhit%2Fecmo-ic-calc-pelekhaty%2Fvisits&color=008080)")
+st.divider()
+
 st.caption("✨ Tool for clinical and educational use.")
   
