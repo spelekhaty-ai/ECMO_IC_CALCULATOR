@@ -1,5 +1,17 @@
 import streamlit as st
+import requests
 
+# --- 1. CONFIG & COUNTER LOGIC ---
+st.set_page_config(page_title="ECMO Metabolic Calculator", layout="wide")
+
+# This hits the API to increment the count
+try:
+    # We use a unique key based on your name to keep your count separate
+    count_url = "https://api.countapi.xyz/hit/spelekhaty_ecmo_calc/visits"
+    visit_count = requests.get(count_url, timeout=2).json()['value']
+except:
+    visit_count = None
+    
 st.set_page_config(page_title="ECMO Metabolic Calculator", layout="wide")
 
 # --- APP HEADER ---
@@ -98,8 +110,8 @@ st.warning("**Disclaimer:** This calculator is intended for educational purposes
 if method == "MEEP-modified*":
     st.caption("*Note: The MEEP protocol is modified in this calculator to use the Fick and Douglas equations to allow for calculation of VO2 and VCO2 from blood gases without complex computational algorithms. However, this simplified approach does not incorporate Haldane effect. The full computational model used by the MEEP protocol is available at Physio-Biome model 0149, but cannot be incorporated into this calculator.")
 
-st.markdown("### Created by S Pelekhaty MS, RDN (February 2026)")
-
+st.markdown("**Created by S Pelekhaty MS, RDN (February 2026)**")
+    
 st.markdown("""
 **References:**
 * Wollersheim T, Frank S, Müller MC, et al. Measuring Energy Expenditure in extracorporeal lung support Patients (MEEP) - Protocol, feasibility and pilot trial. *Clin Nutr.* 2018;37(1):301-307. doi:10.1016/j.clnu.2017.01.001
@@ -108,3 +120,7 @@ st.markdown("""
 * De Waele E, Jonckheer J, Pen JJ, et al. Energy expenditure of patients on ECMO: A prospective pilot study. *Acta Anaesthesiol Scand.* 2019;63(3):360-364.
 * Pelekhaty SL, Rector RP, Wu ZJ, et al. ECMO patient energy requirements: A descriptive, retrospective cohort study. *Nutr Clin Pract.* 2026;41(1):110-119. doi:10.1002/ncp.11330
 """)
+
+# The Counter Display at the bottom
+if visit_count:
+    st.write(f"🔢 *Total tool accesses: {visit_count}*")
