@@ -121,6 +121,6 @@ st.markdown("""
 * Pelekhaty SL, Rector RP, Wu ZJ, et al. ECMO patient energy requirements: A descriptive, retrospective cohort study. *Nutr Clin Pract.* 2026;41(1):110-119. doi:10.1002/ncp.11330
 """)
 
-# The Counter Display at the bottom
+# Place the counter at the absolute bottom
 if visit_count:
-    st.write(f"🔢 *Total tool accesses: {visit_count}*")
+    st.caption(f"Total tool accesses: {visit_count}")
