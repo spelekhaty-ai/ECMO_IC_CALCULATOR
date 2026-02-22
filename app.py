@@ -110,8 +110,8 @@ st.warning("**Disclaimer:** This calculator is intended for educational purposes
 if method == "MEEP-modified*":
     st.caption("*Note: The MEEP protocol is modified in this calculator to use the Fick and Douglas equations to allow for calculation of VO2 and VCO2 from blood gases without complex computational algorithms. However, this simplified approach does not incorporate Haldane effect. The full computational model used by the MEEP protocol is available at Physio-Biome model 0149, but cannot be incorporated into this calculator.")
 
-st.markdown("**Created by S Pelekhaty MS, RDN (February 2026)**")
-    
+# --- 5. REFERENCES ---
+st.divider()
 st.markdown("""
 **References:**
 * Wollersheim T, Frank S, Müller MC, et al. Measuring Energy Expenditure in extracorporeal lung support Patients (MEEP) - Protocol, feasibility and pilot trial. *Clin Nutr.* 2018;37(1):301-307. doi:10.1016/j.clnu.2017.01.001
@@ -121,6 +121,18 @@ st.markdown("""
 * Pelekhaty SL, Rector RP, Wu ZJ, et al. ECMO patient energy requirements: A descriptive, retrospective cohort study. *Nutr Clin Pract.* 2026;41(1):110-119. doi:10.1002/ncp.11330
 """)
 
-# Place the counter at the absolute bottom
+# --- 6. ATTRIBUTION & FEEDBACK ---
+st.divider()
+st.markdown("**Created by S Pelekhaty MS, RDN**")
+st.caption("Published February 2026")
+
+contact_email = "spelekhaty.lit@gmail.com" 
+subject = "Feedback on ECMO Metabolic Calculator"
+body = "Hi, I have a question/feedback regarding the calculator..."
+mail_link = f"mailto:{contact_email}?subject={subject}&body={body}"
+
+st.link_button("📧 Provide Feedback", mail_link)
 if visit_count:
     st.caption(f"Total tool accesses: {visit_count}")
+st.caption("✨ Tool for clinical and educational use.")
+  
