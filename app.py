@@ -119,6 +119,6 @@ subject = "Feedback on ECMO Metabolic Calculator"
 body = "Hi, I have a question/feedback regarding the calculator..."
 mail_link = f"mailto:{contact_email}?subject={subject}&body={body}"
 
-st.markdown("![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fecmo-ic-calculator.streamlit.app&count_bg=%2379C8C7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Tool+Uses&edge_flat=false)")
+st.markdown("![Hits](https://img.shields.io/badge/dynamic/json?label=Tool%20Uses&query=value&url=https%3A%2F%2Fapi.countapi.xyz%2Fhit%2Fecmo-ic-calculator%2Fvisits&color=teal)")
 st.caption("✨ Tool for clinical and educational use.")
   
