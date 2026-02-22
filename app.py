@@ -1,27 +1,15 @@
 import streamlit as st
-import requests
-
-# --- 1. CONFIG & COUNTER LOGIC ---
-st.set_page_config(page_title="ECMO Metabolic Calculator", layout="wide")
-
-# This hits the API to increment the count
-try:
-    # We use a unique key based on your name to keep your count separate
-    count_url = "https://api.countapi.xyz/hit/spelekhaty_ecmo_calc/visits"
-    visit_count = requests.get(count_url, timeout=2).json()['value']
-except:
-    visit_count = None
     
 st.set_page_config(page_title="ECMO Metabolic Calculator", layout="wide")
 
 # --- APP HEADER ---
 st.title("Metabolic Energy Expenditure Calculator")
-st.subheader("Specialized Indirect Calorimetry & ECMO Tool")
+st.subheader("Specialized Indirect Calorimetry in ECMO Tool")
 
 # --- 1. METHOD SELECTION ---
 method = st.selectbox(
-    "Select Calculation Method:",
-    ["capnography/dual-calorimeter", "EPER", "MEEP-modified*"]
+    "**Select Calculation Method:**",
+    ["Capnography/dual-calorimeter", "EPER", "MEEP-modified*"]
 )
 
 st.divider()
@@ -41,7 +29,7 @@ with col2:
     ecmo_vo2 = ecmo_vco2 = sweep_flow = fi_o2 = fe_co2 = 0.0
     blood_flow = hb = hco3 = pre_s_o2 = pre_p_o2 = post_s_o2 = post_p_o2 = pre_pco2 = post_pco2 = 0.0
 
-    if method == "capnography/dual-calorimeter":
+    if method == "Capnography/dual-calorimeter":
         ecmo_vo2 = st.number_input("ECMO-VO2 (mL/min)", value=0.0)
         ecmo_vco2 = st.number_input("ECMO-VCO2 (mL/min)", value=0.0)
 
@@ -72,7 +60,7 @@ final_ee = 0.0
 final_rq = 0.0
 
 try:
-    if method == "capnography/dual-calorimeter":
+    if method == "Capnography/dual-calorimeter":
         total_vo2 = vo2 + ecmo_vo2
         total_vco2 = vco2 + ecmo_vco2
         
@@ -131,8 +119,6 @@ subject = "Feedback on ECMO Metabolic Calculator"
 body = "Hi, I have a question/feedback regarding the calculator..."
 mail_link = f"mailto:{contact_email}?subject={subject}&body={body}"
 
-st.link_button("📧 Provide Feedback", mail_link)
-if visit_count:
-    st.caption(f"Total tool accesses: {visit_count}")
+st.markdown("![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fecmo-ic-calculator.streamlit.app&count_bg=%2379C8C7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Tool+Uses&edge_flat=false)")
 st.caption("✨ Tool for clinical and educational use.")
   
