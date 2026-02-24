@@ -1,8 +1,6 @@
 import streamlit as st
     
 st.set_page_config(page_title="ECMO Metabolic Calculator", layout="wide")
-
-# --- APP HEADER ---
 st.title("Metabolic Energy Expenditure Calculator")
 st.subheader("Specialized Indirect Calorimetry in ECMO Tool")
 
