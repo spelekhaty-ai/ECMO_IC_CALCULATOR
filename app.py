@@ -39,7 +39,7 @@ with col2:
     elif method == "MEEP-modified*":
         sub_col1, sub_col2 = st.columns(2)
         with sub_col1:
-            blood_flow = st.number_input("ECMO blood flow (L/min)", value=0.0)
+            blood_flow = st.number_input("ECMO blood flow (L/min)", value=None, placeholder=0.0)
             hb = st.number_input("Hemoglobin (g/dL)", value=None, placeholder=0.0)
         with sub_col2:
             pre_s_o2 = st.number_input("Pre-circuit SvO2", value=None, placeholder=0.0)
