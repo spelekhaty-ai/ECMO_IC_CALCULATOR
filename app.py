@@ -70,7 +70,7 @@ try:
 
     elif method == "MEEP-modified*":
         calc_vo2 = ((1.34 * hb * (post_s_o2 / 100) * (0.003 * post_p_o2)) - 
-                    (1.34 * hb * (pre_s_o2 / 100) * (0.003 * pre_p_o2))) * blood_flow * 10
+                    (1.34 * hb * (pre_s_o2 / 100) * (0.003 * pre_p_o2))) * blood_flow 
         calc_vco2 = (((pre_pco2 * 0.03) + hco3) - ((post_pco2 * 0.03) + hco3)) * blood_flow * 10
         total_vo2 = vo2 + calc_vo2
         total_vco2 = vco2 + calc_vco2
