@@ -114,7 +114,7 @@ st.divider()
 st.warning("**Disclaimer:** This calculator is intended for educational purposes and to increase accessability to indirect calorimetry calculations in ECMO patients, it is not intended to diagnose or treat any condition or replace clinical judgement.")
 
 if method == "MEEP-modified*":
-    st.caption("*Note: The MEEP protocol is modified in this calculator to use the Fick and Douglas equations to allow for calculation of VO2 and VCO2 from blood gases without complex computational algorithms. However, this simplified approach does not incorporate Haldane effect. The full computational model used by the MEEP protocol is available at Physio-Biome model 0149, but cannot be incorporated into this calculator.")
+    st.caption("*Note: The MEEP protocol is modified in this calculator to use the Fick and Douglas equations to allow for calculation of VO2 and VCO2 from blood gases without complex computational algorithms. However, this approach incorporates a simplification of the Haldane effect. The full computational model used by the MEEP protocol is available at Physio-Biome model 0149, but cannot be incorporated into this calculator.")
 
 # --- 5. REFERENCES ---
 st.divider()
