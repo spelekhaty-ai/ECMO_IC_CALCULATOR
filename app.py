@@ -105,22 +105,17 @@ try:
         st.metric("Energy Expenditure (kcal/day)", f"{final_ee:,.0f}")
     with res_col2:
         st.metric("Respiratory Quotient (RQ)", f"{final_rq:.2f}")
-
+    # --- 5. The "Conditional" Disclaimer (Appears only after calc) ---
+        st.divider()
+        st.info("""
+        **Clinical Interpretation of RQ:**
+        In patients on ECMO, interpretation of RQ requires careful consideration of ventilator settings, ECMO sweep gas parameters, and overall clinical condition. RQ is unlikely to accurately reflect substrate utilization or feeding adequacy and must be interpreted with caution.
+        """)
 except Exception:
     st.info("Awaiting complete data entry for calculation.")
-    # --- 5. The "Conditional" Disclaimer (Appears only after calc) ---
-    st.divider()
-    st.info("""
-    **Clinical Interpretation of RQ:**
-    In patients on ECMO, the calculated Respiratory Quotient (RQ) is highly sensitive to:
-    * **Sweep Gas Flow:** Rapid $CO_2$ removal can artificially elevate RQ.
-    * **Ventilator Settings:** Interaction between native lung function and the circuit.
-    * **Recirculation:** Can confound blood gas-based calculations.
-    
-    **Note:** In this setting, interpretation of RQ requires careful consideration of ventilator settings, ECMO sweep gas parameters, and overall clinical condition. RQ is unlikely to accurately reflect substrate utilization or feeding adequacy and must be interpreted with caution.
-    """)
+       
 
-# --- 5. DISCLAIMER & REFERENCES ---
+# --- 4. DISCLAIMER & REFERENCES ---
 st.divider()
 st.warning("**Disclaimer:** This calculator is intended for educational purposes and to increase accessability to indirect calorimetry calculations in ECMO patients, it is not intended to diagnose or treat any condition or replace clinical judgement.")
 
