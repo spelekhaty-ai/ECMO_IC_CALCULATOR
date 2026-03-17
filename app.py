@@ -17,8 +17,8 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("### Standard Calorimetry")
-    vo2 = st.number_input("VO2 (mL/min)", value=0.0, step=0.1)
-    vco2 = st.number_input("VCO2 (mL/min)", value=0.0, step=0.1)
+    vo2 = st.number_input("VO2 (mL/min)", value=None, placeholder=0.0, step=0.1)
+    vco2 = st.number_input("VCO2 (mL/min)", value=None, placeholder=0.0, step=0.1)
 
 with col2:
     st.markdown(f"### {method} Parameters")
@@ -28,28 +28,26 @@ with col2:
     blood_flow = hb = hco3 = pre_s_o2 = pre_p_o2 = post_s_o2 = post_p_o2 = pre_pco2 = post_pco2 = 0.0
 
     if method == "Capnography/dual-calorimeter":
-        ecmo_vo2 = st.number_input("ECMO-VO2 (mL/min)", value=0.0)
-        ecmo_vco2 = st.number_input("ECMO-VCO2 (mL/min)", value=0.0)
+        ecmo_vo2 = st.number_input("ECMO-VO2 (mL/min)", value=None, placeholder=0.0)
+        ecmo_vco2 = st.number_input("ECMO-VCO2 (mL/min)", value=None, placeholder=0.0)
 
     elif method == "EPER":
-        sweep_flow = st.number_input("ECMO sweep gas flow (L/min)", value=0.0)
-        fi_o2 = st.number_input("ECMO FiO2 (%)", value=0.0)
-        fe_co2 = st.number_input("ECMO FeCO2 (%)", value=0.0)
+        sweep_flow = st.number_input("ECMO sweep gas flow (L/min)", value=None, placeholder=0.0)
+        fi_o2 = st.number_input("ECMO FiO2 (%)", value=None, placeholder=0.0)
+        fe_co2 = st.number_input("ECMO FeCO2 (%)", value=None, placeholder=0.0)
 
     elif method == "MEEP-modified*":
         sub_col1, sub_col2 = st.columns(2)
         with sub_col1:
             blood_flow = st.number_input("ECMO blood flow (L/min)", value=0.0)
-            sweep_flow = st.number_input("ECMO sweep gas flow (L/min)", value=0.0)
-            hb = st.number_input("Hemoglobin (g/dL)", value=0.0)
-            hco3 = st.number_input("HCO3-", value=0.0)
+            hb = st.number_input("Hemoglobin (g/dL)", value=None, placeholder=0.0)
         with sub_col2:
-            pre_s_o2 = st.number_input("Pre-circuit SvO2", value=0.0)
-            pre_p_o2 = st.number_input("Pre-circuit PvO2", value=0.0)
-            pre_pco2 = st.number_input("Pre-circuit PCO2", value=0.0)
-            post_s_o2 = st.number_input("Post-circuit SaO2", value=0.0)
-            post_p_o2 = st.number_input("Post-circuit PaO2", value=0.0)
-            post_pco2 = st.number_input("Post-circuit PCO2", value=0.0)
+            pre_s_o2 = st.number_input("Pre-circuit SvO2", value=None, placeholder=0.0)
+            pre_p_o2 = st.number_input("Pre-circuit PvO2", value=None, placeholder=0.0)
+            pre_pco2 = st.number_input("Pre-circuit PCO2", value=None, placeholder=0.0)
+            post_s_o2 = st.number_input("Post-circuit SaO2", value=None, placeholder=0.0)
+            post_p_o2 = st.number_input("Post-circuit PaO2", value=None, placeholder=0.0)
+            post_pco2 = st.number_input("Post-circuit PCO2", value=None, placeholder=0.0)
 
 st.divider()
 
@@ -69,9 +67,9 @@ try:
         total_vco2 = vco2 + calc_vco2
 
     elif method == "MEEP-modified*":
-        calc_vo2 = ((1.34 * hb * (post_s_o2 / 100) * (0.003 * post_p_o2)) - 
-                    (1.34 * hb * (pre_s_o2 / 100) * (0.003 * pre_p_o2))) * blood_flow 
-        calc_vco2 = (((pre_pco2 * 0.03) + hco3) - ((post_pco2 * 0.03) + hco3)) * blood_flow * 10
+        calc_vo2 = ((1.34 * hb * (post_s_o2 / 100) + (0.003 * post_p_o2)) - 
+                    (1.34 * hb * (pre_s_o2 / 100) + (0.003 * pre_p_o2))) * blood_flow 
+        calc_vco2 = (pre_pco2 - post_pco2) * 6 * blood_flow
         total_vo2 = vo2 + calc_vo2
         total_vco2 = vco2 + calc_vco2
 
