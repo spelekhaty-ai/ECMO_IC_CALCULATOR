@@ -69,7 +69,29 @@ try:
     elif method == "MEEP-modified*":
         calc_vo2 = ((1.34 * hb * (post_s_o2 / 100) + (0.003 * post_p_o2)) - 
                     (1.34 * hb * (pre_s_o2 / 100) + (0.003 * pre_p_o2))) * blood_flow 
-        calc_vco2 = (pre_pco2 - post_pco2) * 6 * blood_flow
+        # 1. Define the function at the top of your script
+        def get_co2_content(pco2, s_o2, hb):
+        """
+        Haldane-corrected CO2 content calculation.
+        Returns mL of CO2 per dL of blood.
+        """
+        # Plasma CO2 component (Dissolved CO2 + Bicarbonate)
+        # Using 0.0301 for solubility and assuming 24 for HCO3 if not measured
+        plasma_co2 = (0.0301 * pco2 + 24) * 2.226 
+    
+        # Haldane Effect component (Carbamino-hemoglobin)
+        # 0.0289 is the coefficient for the shift in CO2 carrying capacity
+        haldane_term = 0.0289 * hb * (100 - s_o2) / 100
+    
+        return plasma_co2 + haldane_term
+
+        # 2. Use the function in your main calculation block
+        pre_content = get_co2_content(pre_pco2, pre_s_o2, hb)
+        post_content = get_co2_content(post_pco2, post_s_o2, hb)
+
+        # 3. Final VCO2 in mL/min
+        # (Pre - Post) * flow * 10 (to convert L/min to dL/min)
+        calc_vco2 = (pre_content - post_content) * blood_flow * 10
         total_vo2 = vo2 + calc_vo2
         total_vco2 = vco2 + calc_vco2
 
